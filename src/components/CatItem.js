@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 
 
-function CatItem({ isFavorite, age, gender, size, image, breed }) {
+function CatItem({ isFavorite, age, gender, size, image, breed, id, handleCatUpdate }) {
         
     function handleFavorite() {
       isFavorite=!isFavorite
-      console.log(cat.isFavorite)
+      console.log(isFavorite)
+      console.log(id)
     
       fetch(`http://localhost:3000/cats/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({isFavorite: cat.isFavorite})
+        body: JSON.stringify({isFavorite: isFavorite})
       })
+      .then(r => r.json())
+      .then(favCat=>handleCatUpdate(favCat))
     }
   return (
     <div>
