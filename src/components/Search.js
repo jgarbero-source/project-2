@@ -81,17 +81,37 @@ function Search({ catData, handleCatUpdate }) {
     return <div> {/* will build using the allFilters object*/}</div>;
   };
 
-  const filterCats = () => {};
+  const filterCats = () => {
+    const filteredCats = catData.filter(
+      (cat) =>
+        (selectedAge === "All"
+          ? true
+          : cat.age.toLowerCase().includes(selectedAge.toLowerCase())) &&
+        (selectedSize === "All"
+          ? true
+          : cat.size.toLowerCase().includes(selectedSize.toLowerCase())) &&
+        (selectedGender === "All"
+          ? true
+          : cat.gender.toLowerCase().includes(selectedGender.toLowerCase())) &&
+        (selectedBreed === "All"
+          ? true
+          : cat.breed.toLowerCase().includes(selectedBreed.toLowerCase()))
+    );
+    console.log(filteredCats);
+    console.log(catData);
+    console.log("Filtering age", selectedAge);
+    return filteredCats;
+  };
 
   return (
     <div className="filter">
-      <input id="search-bar" type="text" placeholder="Search Cats" />
+      {/*<input id="search-bar" type="text" placeholder="Search Cats" />*/}
       {buildSelector(ageChoices.sort(), "Age", selectedAge)}
       {buildSelector(sizeChoices.sort(), "Size", selectedSize)}
       {buildSelector(genderChoices.sort(), "Gender", selectedGender)}
       {buildSelector(breedChoices.sort(), "Breed", selectedBreed)}
 
-      <CatContainer catData={catData} handleCatUpdate={handleCatUpdate} />
+      <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
     </div>
   );
 }
