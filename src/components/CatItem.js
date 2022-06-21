@@ -1,12 +1,12 @@
 import React from 'react';
 
-function CatItem({ cat }) {
+function CatItem({ isFavorite, age, gender, size, image, breed }) {
   return (
-    <li>
-      <h2>{cat.breed}</h2>
-      <p>{cat.age}</p>
-      <img src={cat.image} alt={cat.breed} />
-    </li>
+    <div>
+      <h3>{breed}</h3>
+      <h4>{age}</h4>
+      <img src={image} alt={breed} width='250' height='250' />
+    </div>
   );
 }
 

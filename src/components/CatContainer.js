@@ -3,14 +3,19 @@ import CatItem from './CatItem';
 
 function CatContainer({ catData }) {
   return (
-    <>
-      <div className='container'>
-        <h2>Render Cats Here!</h2>
-      </div>
+    <div className='container'>
       {catData.map((cat) => (
-        <CatItem key={cat.id} cat={cat} />
+        <CatItem
+          key={cat.id}
+          isFavorite={cat.isFavorite}
+          age={cat.age}
+          gender={cat.gender}
+          size={cat.size}
+          image={cat.image}
+          breed={cat.breed}
+        />
       ))}
-    </>
+    </div>
   );
 }
 
