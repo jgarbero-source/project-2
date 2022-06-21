@@ -29,7 +29,7 @@
     },
     {
       "id": 34524051,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Adult",
       "gender": "Female",
       "size": "Large",
@@ -74,7 +74,7 @@
     },
     {
       "id": 46601911,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Adult",
       "gender": "Male",
       "size": "Large",
@@ -83,7 +83,7 @@
     },
     {
       "id": 44252659,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Adult",
       "gender": "Female",
       "size": "Small",
@@ -110,7 +110,7 @@
     },
     {
       "id": 44210352,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Young",
       "gender": "Female",
       "size": "Medium",

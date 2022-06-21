@@ -19,16 +19,20 @@ function App() {
   const favoriteCats = catData.filter(cats => cats.isFavorite === true )
   console.log(favoriteCats)
 
+  function handleCatUpdate(newFavCat) {
+    setCatData(catData.map(cat=> cat.id === newFavCat.id ? newFavCat : cat))
+  }
+
   return (
     <div className='app'>
       <Header />
       <NavBar />
       <Switch>
         <Route exact path='/search'>
-          <Search catData={catData} />
+          <Search catData={catData} handleCatUpdate={handleCatUpdate} />
         </Route>
         <Route exact path='/favorites'>
-          <Favorites favoriteCats={favoriteCats} />
+          <Favorites favoriteCats={favoriteCats} handleCatUpdate={handleCatUpdate} />
         </Route>
         <Route exact path='/'>
           <Home />
