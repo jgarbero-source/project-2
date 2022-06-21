@@ -16,6 +16,9 @@ function App() {
       .then((data) => setCatData(data));
   }, []);
 
+  const favoriteCats = catData.filter(cats => cats.isFavorite === true )
+  console.log(favoriteCats)
+
   return (
     <div className='app'>
       <Header />
@@ -25,7 +28,7 @@ function App() {
           <Search catData={catData} />
         </Route>
         <Route exact path='/favorites'>
-          <Favorites catData={catData} />
+          <Favorites favoriteCats={favoriteCats} />
         </Route>
         <Route exact path='/'>
           <Home />
