@@ -1,7 +1,7 @@
-import React from "react";
-import NoteEditor from "./NoteEditor";
-import NoteViewer from "./NoteViewer";
-import Instructions from "./Instructions";
+import React from 'react';
+import NoteEditor from './NoteEditor';
+import NoteViewer from './NoteViewer';
+import Instructions from './Instructions';
 
 /*
   Advice: If you cannot figure out how to get this component to work,
@@ -21,7 +21,7 @@ function Content() {
     }
   };
 
-  return <div className="master-detail-element detail">{getContent()}</div>;
+  return <div className='master-detail-element detail'>{getContent()}</div>;
 }
 
 export default Content;
