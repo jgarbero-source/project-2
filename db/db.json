@@ -11,7 +11,7 @@
     },
     {
       "id": 42808040,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Baby",
       "gender": "Female",
       "size": "Medium",
@@ -20,7 +20,7 @@
     },
     {
       "id": 46056805,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Young",
       "gender": "Female",
       "size": "Medium",
@@ -29,7 +29,7 @@
     },
     {
       "id": 34524051,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Adult",
       "gender": "Female",
       "size": "Large",
@@ -74,7 +74,7 @@
     },
     {
       "id": 46601911,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Adult",
       "gender": "Male",
       "size": "Large",
@@ -83,7 +83,7 @@
     },
     {
       "id": 44252659,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Adult",
       "gender": "Female",
       "size": "Small",
@@ -99,7 +99,6 @@
       "image": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45311157/1/?bust=1564531700",
       "breed": "Tortoiseshell"
     },
-
     {
       "id": 45239993,
       "isFavorite": false,
@@ -111,7 +110,7 @@
     },
     {
       "id": 44210352,
-      "isFavorite": false,
+      "isFavorite": true,
       "age": "Young",
       "gender": "Female",
       "size": "Medium",

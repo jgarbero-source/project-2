@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CatContainer from "./CatContainer";
 
-function Search({ catData }) {
+function Search({ catData, handleCatUpdate }) {
   //const [searchQuery, setSearchQuery] = useState("");
   //
   const [selectedAge, setSelectedAge] = useState("All");
@@ -91,7 +91,7 @@ function Search({ catData }) {
       {buildSelector(genderChoices.sort(), "Gender", selectedGender)}
       {buildSelector(breedChoices.sort(), "Breed", selectedBreed)}
 
-      <CatContainer catData={catData} />
+      <CatContainer catData={catData} handleCatUpdate={handleCatUpdate} />
     </div>
   );
 }

@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function CatItem({ cat }) {
+
+function CatItem({ isFavorite, age, gender, size, image, breed, id, handleCatUpdate }) {
+        
+    function handleFavorite() {
+      isFavorite=!isFavorite
+      console.log(isFavorite)
+      console.log(id)
+    
+      fetch(`http://localhost:3000/cats/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({isFavorite: isFavorite})
+      })
+      .then(r => r.json())
+      .then(favCat=>handleCatUpdate(favCat))
+    }
   return (
-    <li>
-      <h2>{cat.breed}</h2>
-      <p>{cat.age}</p>
-      <img src={cat.image} alt={cat.breed} />
-    </li>
+    <div>
+      <h3>{breed}</h3>
+      <h4>{age}</h4>
+      <img src={image} alt={breed} width='250' height='250' />
+      <button onClick={handleFavorite}>Favorite</button>
+    </div>
+
   );
 }
 
