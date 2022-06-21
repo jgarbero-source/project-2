@@ -1,0 +1,12 @@
+* {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  column-gap: 70px;
+  row-gap: 20px;
+  justify-content: space-evenly;
+  padding-top: 10px;
+}

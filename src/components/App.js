@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
-// import NoteContainer from './CatContainer';
 import NavBar from './NavBar';
 import Search from './Search';
 import Favorites from './Favorites';
 import Home from './Home';
+import '../assets/css/App.css';
 
 function App() {
   const [catData, setCatData] = useState([]);
