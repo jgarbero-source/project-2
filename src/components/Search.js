@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CatContainer from "./CatContainer";
 
 function Search({ catData, handleCatUpdate }) {
-  const FILTER_OPTIONS = ["Age", "Size", "Gender", "Breed"];
+  //const FILTER_OPTIONS = ["Age", "Size", "Gender", "Breed"];
 
   // REPLACE THIS ///////////////////////////////
   // const [selectedAge, setSelectedAge] = useState("All");
@@ -18,7 +18,6 @@ function Search({ catData, handleCatUpdate }) {
     Breed: "All",
   });
   const filterNames = Object.keys(filterChoice);
-  console.log(filterNames);
 
   //  REPLACE THIS  ///////////////////////
   // const ageChoices = catData
@@ -62,7 +61,7 @@ function Search({ catData, handleCatUpdate }) {
   // console.log(moreOptions);  JUST A TEST
 
   let filterOptions = {};
-  FILTER_OPTIONS.forEach((option) => {
+  filterNames.forEach((option) => {
     filterOptions = {
       ...filterOptions,
       [option]: catData
@@ -136,23 +135,40 @@ function Search({ catData, handleCatUpdate }) {
   const filterCats = () => {
     //////////////////////////////////////////////////////
     // Query filterChoice for values not equal to "All".  Only have to filter on those
-    const filteredCats = catData.filter(
-      (cat) =>
-        (filterChoice.Age === "All"
-          ? true
-          : cat.age.toLowerCase() === filterChoice.Age.toLowerCase()) &&
-        (filterChoice.Size === "All"
-          ? true
-          : cat.size.toLowerCase() === filterChoice.Size.toLowerCase()) &&
-        (filterChoice.Gender === "All"
-          ? true
-          : cat.gender.toLowerCase() === filterChoice.Gender.toLowerCase()) &&
-        (filterChoice.Breed === "All"
-          ? true
-          : cat.breed.toLowerCase() === filterChoice.Breed.toLowerCase())
-    );
+    // const filteredCats = catData.filter(
+    //   (cat) =>
+    //     (filterChoice.Age === "All"
+    //       ? true
+    //       : cat.age.toLowerCase() === filterChoice.Age.toLowerCase()) &&
+    //     (filterChoice.Size === "All"
+    //       ? true
+    //       : cat.size.toLowerCase() === filterChoice.Size.toLowerCase()) &&
+    //     (filterChoice.Gender === "All"
+    //       ? true
+    //       : cat.gender.toLowerCase() === filterChoice.Gender.toLowerCase()) &&
+    //     (filterChoice.Breed === "All"
+    //       ? true
+    //       : cat.breed.toLowerCase() === filterChoice.Breed.toLowerCase())
+    // );
 
-    return filteredCats;
+    // Filtering an object for just key:value pairs where value !== 'All'
+    const asArray = Object.entries(filterChoice);
+    const filtered = asArray.filter(([key, value]) => value !== "All");
+    const activeFilters = Object.fromEntries(filtered);
+    // console.log("Active filters are:");
+    // console.log(activeFilters);
+    let objectFilteredCats = [];
+    let remainingFilteredCats = [...catData];
+
+    for (let i in activeFilters) {
+      console.log("i is", i);
+      objectFilteredCats = remainingFilteredCats;
+      remainingFilteredCats = objectFilteredCats.filter(
+        (cat) =>
+          cat[i.toLowerCase()].toLowerCase() === filterChoice[i].toLowerCase()
+      );
+    }
+    return remainingFilteredCats;
   };
 
   // {buildSelector(filterOptions["Size"], "Size", filterChoice["Size"])}
@@ -161,7 +177,7 @@ function Search({ catData, handleCatUpdate }) {
 
   return (
     <div className="filter">
-      {FILTER_OPTIONS.map((option) =>
+      {filterNames.map((option) =>
         buildSelector(filterOptions[option], option, filterChoice[option])
       )}
       <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
