@@ -10,6 +10,9 @@ function NavBar() {
       <NavLink exact to='/search'>
         Search
       </NavLink>
+      <NavLink exact to='/form'>
+        Add Cat
+      </NavLink>
       <NavLink exact to='/favorites'>
         Favorites
       </NavLink>

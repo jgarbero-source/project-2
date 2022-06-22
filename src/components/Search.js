@@ -75,7 +75,7 @@ function Search({ catData, handleCatUpdate }) {
       {filterNames.map((option) => buildSelector(option))}
 
       <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
-    </>
+    </div>
   );
 }
 

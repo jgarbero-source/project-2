@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Search from './Search';
 import Favorites from './Favorites';
 import Home from './Home';
+import Form from './Form';
 import '../assets/css/App.css';
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
     setCatData(catData.map(cat=> cat.id === newFavCat.id ? newFavCat : cat))
   }
 
+  function addCat(newCat) {
+    setCatData([...catData, newCat])
+  }
+
   return (
     <div className='app'>
       <Header />
@@ -33,6 +38,9 @@ function App() {
         </Route>
         <Route exact path='/favorites'>
           <Favorites favoriteCats={favoriteCats} handleCatUpdate={handleCatUpdate} />
+        </Route>
+        <Route exact path='/form'>
+          <Form addCat={addCat}/>
         </Route>
         <Route exact path='/'>
           <Home />
