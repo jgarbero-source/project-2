@@ -18,9 +18,6 @@ function Search({ catData, handleCatUpdate }) {
     Breed: "All",
   });
 
-  console.log("filterChoice is");
-  console.log(filterChoice);
-
   //  REPLACE THIS  ///////////////////////
   const ageChoices = catData
     .map((cat) => cat.age)
@@ -50,7 +47,6 @@ function Search({ catData, handleCatUpdate }) {
       .map((cat) => cat.breed)
       .filter((val, ind, arr) => arr.indexOf(val) === ind),
   };
-  console.log("filterOptions[Age] is", filterOptions["Age"]);
 
   // const allFilters = {
   //   Age: {
@@ -88,7 +84,6 @@ function Search({ catData, handleCatUpdate }) {
   // };
   const handleSelection = (e) => {
     const { name, value } = e.target;
-    console.log(`${name} set to ${value}`);
     setFilterChoice({ ...filterChoice, [name]: value });
   };
 
@@ -124,21 +119,18 @@ function Search({ catData, handleCatUpdate }) {
       (cat) =>
         (filterChoice.Age === "All"
           ? true
-          : cat.age.toLowerCase().includes(filterChoice.Age.toLowerCase())) &&
+          : cat.age.toLowerCase() === filterChoice.Age.toLowerCase()) &&
         (filterChoice.Size === "All"
           ? true
-          : cat.size.toLowerCase().includes(filterChoice.Size.toLowerCase())) &&
+          : cat.size.toLowerCase() === filterChoice.Size.toLowerCase()) &&
         (filterChoice.Gender === "All"
           ? true
-          : cat.gender
-              .toLowerCase()
-              .includes(filterChoice.Gender.toLowerCase())) &&
+          : cat.gender.toLowerCase() === filterChoice.Gender.toLowerCase()) &&
         (filterChoice.Breed === "All"
           ? true
-          : cat.breed.toLowerCase().includes(filterChoice.Breed.toLowerCase()))
+          : cat.breed.toLowerCase() === filterChoice.Breed.toLowerCase())
     );
-    console.log(filteredCats);
-    console.log(catData);
+
     return filteredCats;
   };
   // {FILTER_OPTIONS.forEach((option) =>
@@ -148,20 +140,16 @@ function Search({ catData, handleCatUpdate }) {
   //     filterChoice[{ option }]
   //   )
   // )}
-  FILTER_OPTIONS.forEach((option) => console.log(option));
-  const testString = "Age";
+
+  // {buildSelector(filterOptions["Size"], "Size", filterChoice["Size"])}
+  //     {buildSelector(filterOptions["Gender"], "Gender", filterChoice["Gender"])}
+  //     {buildSelector(filterOptions["Breed"], "Breed", filterChoice["Breed"])}
+
   return (
     <div className="filter">
-      {/*<input id="search-bar" type="text" placeholder="Search Cats" />*/}
-      {buildSelector(
-        filterOptions[testString],
-        testString,
-        filterChoice[testString]
+      {FILTER_OPTIONS.map((option) =>
+        buildSelector(filterOptions[option], option, filterChoice[option])
       )}
-      {buildSelector(filterOptions["Size"], "Size", filterChoice["Size"])}
-      {buildSelector(filterOptions["Gender"], "Gender", filterChoice["Gender"])}
-      {buildSelector(filterOptions["Breed"], "Breed", filterChoice["Breed"])}
-
       <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
     </div>
   );
