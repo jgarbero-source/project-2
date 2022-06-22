@@ -1,12 +1,15 @@
-import React from 'react';
+import React from "react";
+import Typography from "@mui/material/Typography";
 
 function Home() {
   return (
     <div>
-      <h1>
-        Welcome to our site! Feel free to search our vast array of cats and
-        choose your favorites!
-      </h1>
+      <Typography variant="h4" gutterBottom component="div">
+        Welcome to our site!
+      </Typography>
+      <Typography variant="h4" gutterBottom component="div">
+        Feel free to search our vast array of cats and choose your favorites!
+      </Typography>
     </div>
   );
 }

@@ -1,11 +1,18 @@
-import React from 'react';
-import CatContainer from './CatContainer';
+import React from "react";
+import Typography from "@mui/material/Typography";
+import CatContainer from "./CatContainer";
 
 function Favorites({ favoriteCats, handleCatUpdate, deleteCat }) {
   return (
     <div>
-      <h1>Favorites</h1>
-      <CatContainer catData={favoriteCats} handleCatUpdate={handleCatUpdate} deleteCat={deleteCat} />
+      <Typography variant="h4" gutterBottom component="div">
+        Favorites
+      </Typography>
+      <CatContainer
+        catData={favoriteCats}
+        handleCatUpdate={handleCatUpdate}
+        deleteCat={deleteCat}
+      />
     </div>
   );
 }

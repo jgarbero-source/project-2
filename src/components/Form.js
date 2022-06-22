@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import OptionPicker from "./OptionPicker";
 
 function Form({ catData, addCat }) {
@@ -49,7 +51,9 @@ function Form({ catData, addCat }) {
 
   return (
     <div>
-      <h1>Add a kitty!</h1>
+      <Typography variant="h4" gutterBottom component="div">
+        Add a kitty!
+      </Typography>
       <form onSubmit={handleSubmit}>
         <OptionPicker
           catData={catData}
@@ -65,7 +69,9 @@ function Form({ catData, addCat }) {
           onChange={handleImageChange}
         />
 
-        <button type="submit">Submit</button>
+        <Button variant="contained" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
