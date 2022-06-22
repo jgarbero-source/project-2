@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CatContainer from "./CatContainer";
 
 function Search({ catData, handleCatUpdate }) {
@@ -69,8 +69,6 @@ function Search({ catData, handleCatUpdate }) {
         .filter((val, ind, arr) => arr.indexOf(val) === ind),
     };
   });
-  console.log("Dynamic options");
-  console.log(filterOptions);
 
   // const allFilters = {
   //   Age: {
@@ -111,18 +109,18 @@ function Search({ catData, handleCatUpdate }) {
     setFilterChoice({ ...filterChoice, [name]: value });
   };
 
-  const buildSelector = (choices, choiceType, choiceValue) => {
+  const buildSelector = (choiceType) => {
     return (
       <>
-        <label>{choiceType}</label>
+        <label key={choiceType + "label"}>{choiceType}</label>
         <select
           name={choiceType}
           key={choiceType}
           onChange={handleSelection}
-          value={choiceValue}
+          value={filterChoice[choiceType]}
         >
           <option key={`all${choiceType}`}>All</option>
-          {choices.map((choice) => (
+          {filterOptions[choiceType].map((choice) => (
             <option key={choice} value={choice.toLowerCase()}>
               {choice}
             </option>
@@ -157,13 +155,12 @@ function Search({ catData, handleCatUpdate }) {
     const activeFilters = Object.fromEntries(filtered);
     // console.log("Active filters are:");
     // console.log(activeFilters);
-    let objectFilteredCats = [];
+    let filteredCats = [];
     let remainingFilteredCats = [...catData];
 
     for (let i in activeFilters) {
-      console.log("i is", i);
-      objectFilteredCats = remainingFilteredCats;
-      remainingFilteredCats = objectFilteredCats.filter(
+      filteredCats = remainingFilteredCats;
+      remainingFilteredCats = filteredCats.filter(
         (cat) =>
           cat[i.toLowerCase()].toLowerCase() === filterChoice[i].toLowerCase()
       );
@@ -177,9 +174,7 @@ function Search({ catData, handleCatUpdate }) {
 
   return (
     <div className="filter">
-      {filterNames.map((option) =>
-        buildSelector(filterOptions[option], option, filterChoice[option])
-      )}
+      {filterNames.map((option) => buildSelector(option))}
       <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
     </div>
   );
