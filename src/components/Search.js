@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import CatContainer from "./CatContainer";
+import React, { useState } from 'react';
+import CatContainer from './CatContainer';
 
 function Search({ catData, handleCatUpdate }) {
   //const [searchQuery, setSearchQuery] = useState("");
   //
-  const [selectedAge, setSelectedAge] = useState("All");
-  const [selectedSize, setSelectedSize] = useState("All");
-  const [selectedGender, setSelectedGender] = useState("All");
-  const [selectedBreed, setSelectedBreed] = useState("All");
+  const [selectedAge, setSelectedAge] = useState('All');
+  const [selectedSize, setSelectedSize] = useState('All');
+  const [selectedGender, setSelectedGender] = useState('All');
+  const [selectedBreed, setSelectedBreed] = useState('All');
 
   const ageChoices = catData
     .map((cat) => cat.age)
@@ -39,20 +39,20 @@ function Search({ catData, handleCatUpdate }) {
     const { name, value } = e.target;
     console.log(`${name} set to ${value}`);
     switch (name) {
-      case "Age":
+      case 'Age':
         setSelectedAge(value);
         break;
-      case "Size":
+      case 'Size':
         setSelectedSize(value);
         break;
-      case "Gender":
+      case 'Gender':
         setSelectedGender(value);
         break;
-      case "Breed":
+      case 'Breed':
         setSelectedBreed(value);
         break;
       default:
-        console.log("Unexpected filter", name);
+        console.log('Unexpected filter', name);
     }
   };
 
@@ -84,35 +84,36 @@ function Search({ catData, handleCatUpdate }) {
   const filterCats = () => {
     const filteredCats = catData.filter(
       (cat) =>
-        (selectedAge === "All"
+        (selectedAge === 'All'
           ? true
           : cat.age.toLowerCase().includes(selectedAge.toLowerCase())) &&
-        (selectedSize === "All"
+        (selectedSize === 'All'
           ? true
           : cat.size.toLowerCase().includes(selectedSize.toLowerCase())) &&
-        (selectedGender === "All"
+        (selectedGender === 'All'
           ? true
           : cat.gender.toLowerCase().includes(selectedGender.toLowerCase())) &&
-        (selectedBreed === "All"
+        (selectedBreed === 'All'
           ? true
           : cat.breed.toLowerCase().includes(selectedBreed.toLowerCase()))
     );
     console.log(filteredCats);
     console.log(catData);
-    console.log("Filtering age", selectedAge);
+    console.log('Filtering age', selectedAge);
     return filteredCats;
   };
 
   return (
-    <div className="filter">
-      {/*<input id="search-bar" type="text" placeholder="Search Cats" />*/}
-      {buildSelector(ageChoices.sort(), "Age", selectedAge)}
-      {buildSelector(sizeChoices.sort(), "Size", selectedSize)}
-      {buildSelector(genderChoices.sort(), "Gender", selectedGender)}
-      {buildSelector(breedChoices.sort(), "Breed", selectedBreed)}
-
+    <>
+      <div className='filter'>
+        {/*<input id="search-bar" type="text" placeholder="Search Cats" />*/}
+        {buildSelector(ageChoices.sort(), 'Age', selectedAge)}
+        {buildSelector(sizeChoices.sort(), 'Size', selectedSize)}
+        {buildSelector(genderChoices.sort(), 'Gender', selectedGender)}
+        {buildSelector(breedChoices.sort(), 'Breed', selectedBreed)}
+      </div>
       <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
-    </div>
+    </>
   );
 }
 
