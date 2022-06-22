@@ -2,7 +2,7 @@
 The Kitty Collective is a web page where users can browse a vast array of cats, select their favorites, and even add to the collections. Each cat has its traits described, including its age, breed, and gender. 
 
 # Getting Started 
-After setting up the backend server (see instructions here), do the following:
+After setting up the backend server (see instructions [here](https://github.com/jgarbero-source/backend-project-2)), do the following:
 1. Fork and clone this repository.
 2. Install dependencies `npm install`
 3. Run the app simultaneously with the backend server `npm start`
