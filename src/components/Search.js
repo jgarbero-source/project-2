@@ -17,36 +17,61 @@ function Search({ catData, handleCatUpdate }) {
     Gender: "All",
     Breed: "All",
   });
+  const filterNames = Object.keys(filterChoice);
+  console.log(filterNames);
 
   //  REPLACE THIS  ///////////////////////
-  const ageChoices = catData
-    .map((cat) => cat.age)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
-  const sizeChoices = catData
-    .map((cat) => cat.size)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
-  const genderChoices = catData
-    .map((cat) => cat.gender)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
-  const breedChoices = catData
-    .map((cat) => cat.breed)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
-  /////////////////////////////////
+  // const ageChoices = catData
+  //   .map((cat) => cat.age)
+  //   .filter((val, ind, arr) => arr.indexOf(val) === ind);
+  // const sizeChoices = catData
+  //   .map((cat) => cat.size)
+  //   .filter((val, ind, arr) => arr.indexOf(val) === ind);
+  // const genderChoices = catData
+  //   .map((cat) => cat.gender)
+  //   .filter((val, ind, arr) => arr.indexOf(val) === ind);
+  // const breedChoices = catData
+  //   .map((cat) => cat.breed)
+  //   .filter((val, ind, arr) => arr.indexOf(val) === ind);
+  // /////////////////////////////////
   // Can create this more dynamically
-  const filterOptions = {
-    Age: catData
-      .map((cat) => cat.age)
-      .filter((val, ind, arr) => arr.indexOf(val) === ind),
-    Size: catData
-      .map((cat) => cat.size)
-      .filter((val, ind, arr) => arr.indexOf(val) === ind),
-    Gender: catData
-      .map((cat) => cat.gender)
-      .filter((val, ind, arr) => arr.indexOf(val) === ind),
-    Breed: catData
-      .map((cat) => cat.breed)
-      .filter((val, ind, arr) => arr.indexOf(val) === ind),
-  };
+  // filters for just unique values in each array
+  // const filterOptions = {
+  //   Age: catData
+  //     .map((cat) => cat.age)
+  //     .filter((val, ind, arr) => arr.indexOf(val) === ind),
+  //   Size: catData
+  //     .map((cat) => cat.size)
+  //     .filter((val, ind, arr) => arr.indexOf(val) === ind),
+  //   Gender: catData
+  //     .map((cat) => cat.gender)
+  //     .filter((val, ind, arr) => arr.indexOf(val) === ind),
+  //   Breed: catData
+  //     .map((cat) => cat.breed)
+  //     .filter((val, ind, arr) => arr.indexOf(val) === ind),
+  // };
+
+  // const dynamicFilterOptions = {};
+  // const ageString = "Age";
+  // const moreOptions = {
+  //   ...dynamicFilterOptions,
+  //   [ageString]: catData
+  //     .map((cat) => cat[ageString.toLowerCase()])
+  //     .filter((val, ind, arr) => arr.indexOf(val) === ind),
+  // };
+  // console.log(moreOptions);  JUST A TEST
+
+  let filterOptions = {};
+  FILTER_OPTIONS.forEach((option) => {
+    filterOptions = {
+      ...filterOptions,
+      [option]: catData
+        .map((cat) => cat[option.toLowerCase()])
+        .filter((val, ind, arr) => arr.indexOf(val) === ind),
+    };
+  });
+  console.log("Dynamic options");
+  console.log(filterOptions);
 
   // const allFilters = {
   //   Age: {
@@ -108,10 +133,6 @@ function Search({ catData, handleCatUpdate }) {
     );
   };
 
-  const buildFilters = () => {
-    return <div> {/* will build using the allFilters object*/}</div>;
-  };
-
   const filterCats = () => {
     //////////////////////////////////////////////////////
     // Query filterChoice for values not equal to "All".  Only have to filter on those
@@ -133,13 +154,6 @@ function Search({ catData, handleCatUpdate }) {
 
     return filteredCats;
   };
-  // {FILTER_OPTIONS.forEach((option) =>
-  //   buildSelector(
-  //     filterOptions[{ option }],
-  //     { option },
-  //     filterChoice[{ option }]
-  //   )
-  // )}
 
   // {buildSelector(filterOptions["Size"], "Size", filterChoice["Size"])}
   //     {buildSelector(filterOptions["Gender"], "Gender", filterChoice["Gender"])}
