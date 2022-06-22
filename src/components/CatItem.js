@@ -9,6 +9,7 @@ function CatItem({
   breed,
   id,
   handleCatUpdate,
+  deleteCat
 }) {
   function handleFavorite() {
     isFavorite = !isFavorite;
@@ -25,6 +26,15 @@ function CatItem({
       .then((r) => r.json())
       .then((favCat) => handleCatUpdate(favCat));
   }
+
+function handleDelete() {
+  fetch(`http://localhost:3000/cats/${id}`, {
+    method: 'DELETE'
+  })
+
+  deleteCat(id)
+}
+
   return (
     <div>
       <h3>{breed}</h3>
@@ -35,6 +45,7 @@ function CatItem({
       <button onClick={handleFavorite}>
         {isFavorite ? 'Unfavorite' : 'Favorite'}
       </button>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 }
