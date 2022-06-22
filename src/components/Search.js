@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CatContainer from "./CatContainer";
 
-function Search({ catData, handleCatUpdate }) {
+function Search({ catData, handleCatUpdate, deleteCat }) {
   const [filterChoice, setFilterChoice] = useState({
     Age: "All",
     Size: "All",
@@ -73,7 +73,7 @@ function Search({ catData, handleCatUpdate }) {
     <div className="filter" key="search">
       {filterNames.map((option) => buildSelector(option))}
 
-      <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
+      <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} deleteCat={deleteCat}/>
     </div>
   );
 }

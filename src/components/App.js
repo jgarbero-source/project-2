@@ -28,16 +28,21 @@ function App() {
     setCatData([...catData, newCat])
   }
 
+  function deleteCat(catId) {
+    const updatedCats = catData.filter(cat => cat.id !== catId)
+    setCatData(updatedCats)
+  }
+
   return (
     <div className='app'>
       <Header />
       <NavBar />
       <Switch>
         <Route exact path='/search'>
-          <Search catData={catData} handleCatUpdate={handleCatUpdate} />
+          <Search catData={catData} handleCatUpdate={handleCatUpdate} deleteCat={deleteCat} />
         </Route>
         <Route exact path='/favorites'>
-          <Favorites favoriteCats={favoriteCats} handleCatUpdate={handleCatUpdate} />
+          <Favorites favoriteCats={favoriteCats} handleCatUpdate={handleCatUpdate} deleteCat={deleteCat} />
         </Route>
         <Route exact path='/form'>
           <Form addCat={addCat}/>

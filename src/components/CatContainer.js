@@ -1,7 +1,7 @@
 import React from 'react';
 import CatItem from './CatItem';
 
-function CatContainer({ catData, handleCatUpdate }) {
+function CatContainer({ catData, handleCatUpdate, deleteCat }) {
 
   //create some if conditional that selects one div over the other? I don't think that's how this works. 
   return (
@@ -17,6 +17,7 @@ function CatContainer({ catData, handleCatUpdate }) {
           image={cat.image}
           breed={cat.breed}
           handleCatUpdate={handleCatUpdate}
+          deleteCat={deleteCat}
         />
       ))}
     </div>
