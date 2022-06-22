@@ -9,20 +9,18 @@ function CatContainer({ catData, handleCatUpdate, deleteCat }) {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
         {catData.map((cat) => (
-          <Grid item xs={4}>
-            <CatItem
-              key={cat.id}
-              id={cat.id}
-              isFavorite={cat.isFavorite}
-              age={cat.age}
-              gender={cat.gender}
-              size={cat.size}
-              image={cat.image}
-              breed={cat.breed}
-              handleCatUpdate={handleCatUpdate}
-              deleteCat={deleteCat}
-            />
-          </Grid>
+          <CatItem
+            key={cat.id}
+            id={cat.id}
+            isFavorite={cat.isFavorite}
+            age={cat.age}
+            gender={cat.gender}
+            size={cat.size}
+            image={cat.image}
+            breed={cat.breed}
+            handleCatUpdate={handleCatUpdate}
+            deleteCat={deleteCat}
+          />
         ))}
       </Grid>
     </Box>
