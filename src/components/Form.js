@@ -1,53 +1,74 @@
 import React, { useState } from "react";
+import OptionPicker from "./OptionPicker";
 
-function Form({ addCat }) {
+function Form({ catData, addCat }) {
+  const [catImage, setCatImage] = useState("");
 
-    const [formData, setFormData] = useState({
-        isFavorite: false,
-        age: "",
-        gender: "",
-        size: "",
-        image: "",
-        breed: ""
+  const [filterChoice, setFilterChoice] = useState({
+    Age: "All",
+    Size: "All",
+    Gender: "All",
+    Breed: "All",
+  });
+
+  function handleImageChange(e) {
+    setCatImage(e.target.value);
+  }
+  const handleSelection = (e) => {
+    const { name, value } = e.target;
+    setFilterChoice({ ...filterChoice, [name]: value });
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newCat = {
+      isFavorite: false,
+      age: filterChoice.Age.charAt(0).toUpperCase() + filterChoice.Age.slice(1),
+      gender:
+        filterChoice.Gender.charAt(0).toUpperCase() +
+        filterChoice.Gender.slice(1),
+      size:
+        filterChoice.Size.charAt(0).toUpperCase() + filterChoice.Size.slice(1),
+      image: catImage,
+      breed:
+        filterChoice.Breed.charAt(0).toUpperCase() +
+        filterChoice.Breed.slice(1),
+    };
+    addCat(newCat);
+
+    fetch(`http://localhost:3000/cats`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCat),
     })
+      .then((r) => r.json())
+      .then((oneCat) => addCat(oneCat));
+  }
 
-    function handleChange(e) {
-        const { name, value } = e.target
-        setFormData({...formData, [name]: value})
-    }
+  return (
+    <div>
+      <h1>Add a kitty!</h1>
+      <form onSubmit={handleSubmit}>
+        <OptionPicker
+          catData={catData}
+          filterChoice={filterChoice}
+          onSelection={handleSelection}
+        />
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        addCat(formData)
+        <input
+          type="text"
+          name="image"
+          value={catImage}
+          placeholder="Image URL"
+          onChange={handleImageChange}
+        />
 
-        fetch(`http://localhost:3000/cats`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(r=>r.json())
-            .then(oneCat=>addCat(oneCat))
-    }
-
-
-
-
-    return(
-        <div>
-            <h1>Add a kitty!</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="age" value={formData.age} placeholder="Age" onChange={handleChange} />
-                <input type="text" name="gender" value={formData.gender} placeholder="Gender" onChange={handleChange}/>
-                <input type="text" name="size" value={formData.size} placeholder="Size" onChange={handleChange}/>
-                <input type="text" name="image" value={formData.image} placeholder="Image URL" onChange={handleChange}/>
-                <input type="text" name="breed" value={formData.breed} placeholder="Breed" onChange={handleChange}/>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    )
-
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
 
 export default Form;
