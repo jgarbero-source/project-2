@@ -2,116 +2,78 @@ import React, { useState } from 'react';
 import CatContainer from './CatContainer';
 
 function Search({ catData, handleCatUpdate }) {
-  //const [searchQuery, setSearchQuery] = useState("");
-  //
-  const [selectedAge, setSelectedAge] = useState('All');
-  const [selectedSize, setSelectedSize] = useState('All');
-  const [selectedGender, setSelectedGender] = useState('All');
-  const [selectedBreed, setSelectedBreed] = useState('All');
 
-  const ageChoices = catData
-    .map((cat) => cat.age)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
-  const sizeChoices = catData
-    .map((cat) => cat.size)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
-  const genderChoices = catData
-    .map((cat) => cat.gender)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
-  const breedChoices = catData
-    .map((cat) => cat.breed)
-    .filter((val, ind, arr) => arr.indexOf(val) === ind);
+  const [filterChoice, setFilterChoice] = useState({
+    Age: "All",
+    Size: "All",
+    Gender: "All",
+    Breed: "All",
+  });
+  const filterNames = Object.keys(filterChoice);
 
-  const allFilters = {
-    Age: {
-      curState: selectedAge,
-      setFunction: setSelectedAge,
-      choices: ageChoices,
-    },
-    Size: {
-      curState: selectedSize,
-      setFunction: setSelectedSize,
-      choices: sizeChoices,
-    },
-  };
+  let filterOptions = {};
+  filterNames.forEach((option) => {
+    filterOptions = {
+      ...filterOptions,
+      [option]: catData
+        .map((cat) => cat[option.toLowerCase()])
+        .filter((val, ind, arr) => arr.indexOf(val) === ind),
+    };
+  });
 
   const handleSelection = (e) => {
     const { name, value } = e.target;
-    console.log(`${name} set to ${value}`);
-    switch (name) {
-      case 'Age':
-        setSelectedAge(value);
-        break;
-      case 'Size':
-        setSelectedSize(value);
-        break;
-      case 'Gender':
-        setSelectedGender(value);
-        break;
-      case 'Breed':
-        setSelectedBreed(value);
-        break;
-      default:
-        console.log('Unexpected filter', name);
-    }
+
+    setFilterChoice({ ...filterChoice, [name]: value });
   };
 
-  const buildSelector = (choices, choiceType, choiceValue) => {
+  const buildSelector = (choiceType) => {
     return (
-      <>
-        <label>{choiceType}</label>
+      <div key={choiceType}>
+        <label key={choiceType + "label"}>{choiceType}</label>
         <select
           name={choiceType}
           key={choiceType}
           onChange={handleSelection}
-          value={choiceValue}
+          value={filterChoice[choiceType]}
         >
           <option key={`all${choiceType}`}>All</option>
-          {choices.map((choice) => (
-            <option key={choice} value={choice.toLowerCase()}>
+          {filterOptions[choiceType].map((choice) => (
+            <option
+              key={`${choice}_${choiceType}`}
+              value={choice.toLowerCase()}
+            >
               {choice}
             </option>
           ))}
         </select>
-      </>
+      </div>
     );
-  };
-
-  const buildFilters = () => {
-    return <div> {/* will build using the allFilters object*/}</div>;
   };
 
   const filterCats = () => {
-    const filteredCats = catData.filter(
-      (cat) =>
-        (selectedAge === 'All'
-          ? true
-          : cat.age.toLowerCase().includes(selectedAge.toLowerCase())) &&
-        (selectedSize === 'All'
-          ? true
-          : cat.size.toLowerCase().includes(selectedSize.toLowerCase())) &&
-        (selectedGender === 'All'
-          ? true
-          : cat.gender.toLowerCase().includes(selectedGender.toLowerCase())) &&
-        (selectedBreed === 'All'
-          ? true
-          : cat.breed.toLowerCase().includes(selectedBreed.toLowerCase()))
-    );
-    console.log(filteredCats);
-    console.log(catData);
-    console.log('Filtering age', selectedAge);
-    return filteredCats;
+    // Filtering an object for just key:value pairs where value !== 'All'
+    const asArray = Object.entries(filterChoice);
+    const filtered = asArray.filter(([key, value]) => value !== "All");
+    const activeFilters = Object.fromEntries(filtered);
+
+    let filteredCats = [];
+    let remainingFilteredCats = [...catData];
+
+    for (let i in activeFilters) {
+      filteredCats = remainingFilteredCats;
+      remainingFilteredCats = filteredCats.filter(
+        (cat) =>
+          cat[i.toLowerCase()].toLowerCase() === filterChoice[i].toLowerCase()
+      );
+    }
+    return remainingFilteredCats;
   };
 
   return (
-    <>
-      <div className='filter'>
-        {/*<input id="search-bar" type="text" placeholder="Search Cats" />*/}
-        {buildSelector(ageChoices.sort(), 'Age', selectedAge)}
-        {buildSelector(sizeChoices.sort(), 'Size', selectedSize)}
-        {buildSelector(genderChoices.sort(), 'Gender', selectedGender)}
-        {buildSelector(breedChoices.sort(), 'Breed', selectedBreed)}
-      </div>
+    <div className="filter" key="search">
+      {filterNames.map((option) => buildSelector(option))}
+
       <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} />
     </>
   );
