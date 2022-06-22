@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CatContainer from "./CatContainer";
+import OptionPicker from "./OptionPicker";
 
 function Search({ catData, handleCatUpdate, deleteCat }) {
   const [filterChoice, setFilterChoice] = useState({
@@ -8,6 +9,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
     Gender: "All",
     Breed: "All",
   });
+  /*
   const filterNames = Object.keys(filterChoice);
 
   let filterOptions = {};
@@ -19,13 +21,14 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
         .filter((val, ind, arr) => arr.indexOf(val) === ind),
     };
   });
-
+*/
   const handleSelection = (e) => {
     const { name, value } = e.target;
 
     setFilterChoice({ ...filterChoice, [name]: value });
   };
 
+  /*
   const buildSelector = (choiceType) => {
     return (
       <div key={choiceType}>
@@ -49,7 +52,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
       </div>
     );
   };
-
+*/
   const filterCats = () => {
     // Filtering an object for just key:value pairs where value !== 'All'
     const asArray = Object.entries(filterChoice);
@@ -71,9 +74,21 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
 
   return (
     <div className="filter" key="search">
-      {filterNames.map((option) => buildSelector(option))}
-
-      <CatContainer catData={filterCats()} handleCatUpdate={handleCatUpdate} deleteCat={deleteCat}/>
+      {/*
+      <div className="filter" key="options">
+        {filterNames.map((option) => buildSelector(option))}
+      </div>
+       */}
+      <OptionPicker
+        catData={catData}
+        filterChoice={filterChoice}
+        onSelection={handleSelection}
+      />
+      <CatContainer
+        catData={filterCats()}
+        handleCatUpdate={handleCatUpdate}
+        deleteCat={deleteCat}
+      />
     </div>
   );
 }
