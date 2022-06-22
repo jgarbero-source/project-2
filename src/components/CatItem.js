@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function CatItem({
   isFavorite,
@@ -16,9 +16,9 @@ function CatItem({
     console.log(id);
 
     fetch(`http://localhost:3000/cats/${id}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ isFavorite: isFavorite }),
     })
@@ -28,11 +28,13 @@ function CatItem({
   return (
     <div>
       <h3>{breed}</h3>
-      <h4>{age}</h4>
-      <h4>{gender}</h4>
-      <h4>{size}</h4>
-      <img src={image} alt={breed} width="250" height="250" />
-      <button onClick={handleFavorite}>Favorite</button>
+      <h4>
+        {age} | {size} | {gender}
+      </h4>
+      <img src={image} alt={breed} width='250' height='250' />
+      <button onClick={handleFavorite}>
+        {isFavorite ? 'Unfavorite' : 'Favorite'}
+      </button>
     </div>
   );
 }
