@@ -40,7 +40,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container className='filter' maxWidth="lg">
       <Typography variant="h4" gutterBottom component="div">
         Search
       </Typography>

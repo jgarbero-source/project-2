@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 
 function Form({ catData, addCat }) {
-  const [catImage, setCatImage] = useState("");
+  const [catImage, setCatImage] = useState('');
 
   const [filterChoice, setFilterChoice] = useState({
     age: "",
@@ -44,9 +44,9 @@ function Form({ catData, addCat }) {
     addCat(newCat);
 
     fetch(`http://localhost:3000/cats`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newCat),
     })
@@ -55,7 +55,7 @@ function Form({ catData, addCat }) {
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container className='catform' maxWidth="lg">
       <Typography variant="h4" gutterBottom component="div">
         Add a kitty!
       </Typography>

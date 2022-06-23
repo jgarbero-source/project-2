@@ -40,7 +40,6 @@ function CatItem({
     fetch(`http://localhost:3000/cats/${id}`, {
       method: "DELETE",
     });
-
     deleteCat(id);
   }
   //
