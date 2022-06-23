@@ -53,7 +53,9 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
           marginBottom: '10px',
           maxWidth: '595px',
           paddingTop: '5px',
-          backgroundColor: '#ba68c8',
+          backgroundColor: '#ffffff',
+          zIndex: 1001,
+          shadow: '100px',
         }}
       >
         <OptionPicker
