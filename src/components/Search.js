@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Stack from "@mui/material/Stack";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 import CatContainer from "./CatContainer";
 import OptionPicker from "./OptionPicker";
 
 function Search({ catData, handleCatUpdate, deleteCat }) {
   const [filterChoice, setFilterChoice] = useState({
-    Age: "All",
-    Size: "All",
-    Gender: "All",
-    Breed: "All",
+    age: "",
+    size: "",
+    gender: "",
+    breed: "",
   });
 
-  const handleSelection = (e) => {
+  const handleSelection = (e: SelectChangeEvent) => {
     const { name, value } = e.target;
 
     setFilterChoice({ ...filterChoice, [name]: value });
@@ -19,7 +23,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   const filterCats = () => {
     // Filtering an object for just key:value pairs where value !== 'All'
     const asArray = Object.entries(filterChoice);
-    const filtered = asArray.filter(([key, value]) => value !== "All");
+    const filtered = asArray.filter(([key, value]) => value !== "");
     const activeFilters = Object.fromEntries(filtered);
 
     let filteredCats = [];
@@ -36,18 +40,23 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   };
 
   return (
-    <div className="filter" key="search">
-      <OptionPicker
-        catData={catData}
-        filterChoice={filterChoice}
-        onSelection={handleSelection}
-      />
-      <CatContainer
-        catData={filterCats()}
-        handleCatUpdate={handleCatUpdate}
-        deleteCat={deleteCat}
-      />
-    </div>
+    <Container maxWidth="lg">
+      <Typography variant="h4" gutterBottom component="div">
+        Search
+      </Typography>
+      <Stack spacing={2}>
+        <OptionPicker
+          catData={catData}
+          filterChoice={filterChoice}
+          onSelection={handleSelection}
+        />
+        <CatContainer
+          catData={filterCats()}
+          handleCatUpdate={handleCatUpdate}
+          deleteCat={deleteCat}
+        />
+      </Stack>
+    </Container>
   );
 }
 

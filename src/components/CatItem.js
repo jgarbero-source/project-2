@@ -1,4 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 
 function CatItem({
   isFavorite,
@@ -9,7 +18,7 @@ function CatItem({
   breed,
   id,
   handleCatUpdate,
-  deleteCat
+  deleteCat,
 }) {
   function handleFavorite() {
     isFavorite = !isFavorite;
@@ -17,9 +26,9 @@ function CatItem({
     console.log(id);
 
     fetch(`http://localhost:3000/cats/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ isFavorite: isFavorite }),
     })
@@ -27,26 +36,34 @@ function CatItem({
       .then((favCat) => handleCatUpdate(favCat));
   }
 
-function handleDelete() {
-  fetch(`http://localhost:3000/cats/${id}`, {
-    method: 'DELETE'
-  })
+  function handleDelete() {
+    fetch(`http://localhost:3000/cats/${id}`, {
+      method: "DELETE",
+    });
 
-  deleteCat(id)
-}
-
+    deleteCat(id);
+  }
+  //
   return (
-    <div>
-      <h3>{breed}</h3>
-      <h4>
-        {age} | {size} | {gender}
-      </h4>
-      <img src={image} alt={breed} width='250' height='250' />
-      <button onClick={handleFavorite}>
-        {isFavorite ? 'Unfavorite' : 'Favorite'}
-      </button>
-      <button onClick={handleDelete}>Delete</button>
-    </div>
+    <Grid item xs={4}>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardMedia component="img" src={image} alt={breed} height="250" />
+        <CardContent>
+          <Typography variant="subtitle1" gutterBottom component="div">
+            {breed}
+          </Typography>
+          <Typography variant="subtitle2" gutterBottom component="div">
+            {age} | {size} | {gender}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button onClick={handleFavorite}>
+            {isFavorite ? "Unfavorite" : "Favorite"}
+          </Button>
+          <Button onClick={handleDelete}>Delete</Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 }
 

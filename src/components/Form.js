@@ -1,20 +1,27 @@
 import React, { useState } from "react";
+import Typography from "@mui/material/Typography";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 import OptionPicker from "./OptionPicker";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
 function Form({ catData, addCat }) {
   const [catImage, setCatImage] = useState("");
 
   const [filterChoice, setFilterChoice] = useState({
-    Age: "All",
-    Size: "All",
-    Gender: "All",
-    Breed: "All",
+    age: "",
+    size: "",
+    gender: "",
+    breed: "",
   });
 
   function handleImageChange(e) {
     setCatImage(e.target.value);
   }
-  const handleSelection = (e) => {
+  const handleSelection = (e: SelectChangeEvent) => {
     const { name, value } = e.target;
     setFilterChoice({ ...filterChoice, [name]: value });
   };
@@ -23,16 +30,16 @@ function Form({ catData, addCat }) {
     e.preventDefault();
     const newCat = {
       isFavorite: false,
-      age: filterChoice.Age.charAt(0).toUpperCase() + filterChoice.Age.slice(1),
+      age: filterChoice.age.charAt(0).toUpperCase() + filterChoice.age.slice(1),
       gender:
-        filterChoice.Gender.charAt(0).toUpperCase() +
-        filterChoice.Gender.slice(1),
+        filterChoice.gender.charAt(0).toUpperCase() +
+        filterChoice.gender.slice(1),
       size:
-        filterChoice.Size.charAt(0).toUpperCase() + filterChoice.Size.slice(1),
+        filterChoice.size.charAt(0).toUpperCase() + filterChoice.size.slice(1),
       image: catImage,
       breed:
-        filterChoice.Breed.charAt(0).toUpperCase() +
-        filterChoice.Breed.slice(1),
+        filterChoice.breed.charAt(0).toUpperCase() +
+        filterChoice.breed.slice(1),
     };
     addCat(newCat);
 
@@ -48,26 +55,34 @@ function Form({ catData, addCat }) {
   }
 
   return (
-    <div>
-      <h1>Add a kitty!</h1>
-      <form onSubmit={handleSubmit}>
-        <OptionPicker
-          catData={catData}
-          filterChoice={filterChoice}
-          onSelection={handleSelection}
-        />
+    <Container maxWidth="lg">
+      <Typography variant="h4" gutterBottom component="div">
+        Add a kitty!
+      </Typography>
 
-        <input
-          type="text"
-          name="image"
-          value={catImage}
-          placeholder="Image URL"
-          onChange={handleImageChange}
-        />
+      <Paper elevation={3}>
+        <form onSubmit={handleSubmit}>
+          <OptionPicker
+            catData={catData}
+            filterChoice={filterChoice}
+            onSelection={handleSelection}
+          />
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+          <TextField
+            type="text"
+            name="image"
+            value={catImage}
+            placeholder="Image URL"
+            label="Image URL"
+            fullWidth
+            variant="standard"
+            onChange={handleImageChange}
+          />
+
+          <Button type="submit">Submit</Button>
+        </form>
+      </Paper>
+    </Container>
   );
 }
 
