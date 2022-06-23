@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import OptionPicker from "./OptionPicker";
 
@@ -52,10 +53,11 @@ function Form({ catData, addCat }) {
   }
 
   return (
-    <div>
+    <Container maxWidth="md">
       <Typography variant="h4" gutterBottom component="div">
         Add a kitty!
       </Typography>
+
       <form onSubmit={handleSubmit}>
         <OptionPicker
           catData={catData}
@@ -68,16 +70,15 @@ function Form({ catData, addCat }) {
           name="image"
           value={catImage}
           placeholder="Image URL"
-          label="Image"
+          label="Image URL"
           fullWidth
+          variant="standard"
           onChange={handleImageChange}
         />
 
-        <Button variant="contained" type="submit">
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </form>
-    </div>
+    </Container>
   );
 }
 
