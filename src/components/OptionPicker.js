@@ -2,6 +2,7 @@ import React from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import Box from "@mui/material/Box";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 function OptionPicker({ catData, filterChoice, onSelection }) {
@@ -19,7 +20,7 @@ function OptionPicker({ catData, filterChoice, onSelection }) {
 
   const buildSelector = (choiceType) => {
     return (
-      <FormControl fullWidth>
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel key={choiceType + "label"} id={choiceType + "label"}>
           {choiceType}
         </InputLabel>

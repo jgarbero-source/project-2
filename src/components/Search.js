@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Stack from "@mui/material/Stack";
 import CatContainer from "./CatContainer";
 import OptionPicker from "./OptionPicker";
 
@@ -37,7 +38,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   };
 
   return (
-    <div className="filter" key="search">
+    <Stack spacing={2}>
       <OptionPicker
         catData={catData}
         filterChoice={filterChoice}
@@ -48,7 +49,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
         handleCatUpdate={handleCatUpdate}
         deleteCat={deleteCat}
       />
-    </div>
+    </Stack>
   );
 }
 
