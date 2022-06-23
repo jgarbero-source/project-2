@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 import CatContainer from "./CatContainer";
 import OptionPicker from "./OptionPicker";
 
@@ -38,18 +40,23 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   };
 
   return (
-    <Stack spacing={2}>
-      <OptionPicker
-        catData={catData}
-        filterChoice={filterChoice}
-        onSelection={handleSelection}
-      />
-      <CatContainer
-        catData={filterCats()}
-        handleCatUpdate={handleCatUpdate}
-        deleteCat={deleteCat}
-      />
-    </Stack>
+    <Container maxWidth="lg">
+      <Typography variant="h4" gutterBottom component="div">
+        Search
+      </Typography>
+      <Stack spacing={2}>
+        <OptionPicker
+          catData={catData}
+          filterChoice={filterChoice}
+          onSelection={handleSelection}
+        />
+        <CatContainer
+          catData={filterCats()}
+          handleCatUpdate={handleCatUpdate}
+          deleteCat={deleteCat}
+        />
+      </Stack>
+    </Container>
   );
 }
 

@@ -55,7 +55,7 @@ function Form({ catData, addCat }) {
   }
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <Typography variant="h4" gutterBottom component="div">
         Add a kitty!
       </Typography>

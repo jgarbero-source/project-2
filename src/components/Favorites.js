@@ -1,10 +1,11 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 import CatContainer from "./CatContainer";
 
 function Favorites({ favoriteCats, handleCatUpdate, deleteCat }) {
   return (
-    <div>
+    <Container maxWidth="lg">
       <Typography variant="h4" gutterBottom component="div">
         Favorites
       </Typography>
@@ -13,7 +14,7 @@ function Favorites({ favoriteCats, handleCatUpdate, deleteCat }) {
         handleCatUpdate={handleCatUpdate}
         deleteCat={deleteCat}
       />
-    </div>
+    </Container>
   );
 }
 
