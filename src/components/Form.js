@@ -45,7 +45,7 @@ function Form({ catData, addCat }) {
     };
     addCat(newCat);
 
-    fetch(`http://localhost:3000/cats`, {
+    fetch(`${process.env.REACT_APP_API_URL}/cats`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

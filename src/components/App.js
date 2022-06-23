@@ -16,7 +16,7 @@ function App() {
   const [catData, setCatData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/cats')
+    fetch(`${process.env.REACT_APP_API_URL}/cats`)
       .then((res) => res.json())
       .then((data) => setCatData(data));
   }, []);
