@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import OptionPicker from "./OptionPicker";
+import React, { useState } from 'react';
+import OptionPicker from './OptionPicker';
 
 function Form({ catData, addCat }) {
-  const [catImage, setCatImage] = useState("");
+  const [catImage, setCatImage] = useState('');
 
   const [filterChoice, setFilterChoice] = useState({
-    Age: "All",
-    Size: "All",
-    Gender: "All",
-    Breed: "All",
+    Age: 'All',
+    Size: 'All',
+    Gender: 'All',
+    Breed: 'All',
   });
 
   function handleImageChange(e) {
@@ -37,9 +37,9 @@ function Form({ catData, addCat }) {
     addCat(newCat);
 
     fetch(`http://localhost:3000/cats`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newCat),
     })
@@ -48,8 +48,8 @@ function Form({ catData, addCat }) {
   }
 
   return (
-    <div>
-      <h1>Add a kitty!</h1>
+    <div className='catform'>
+      <h3>Add a kitty!</h3>
       <form onSubmit={handleSubmit}>
         <OptionPicker
           catData={catData}
@@ -58,14 +58,14 @@ function Form({ catData, addCat }) {
         />
 
         <input
-          type="text"
-          name="image"
+          type='text'
+          name='image'
           value={catImage}
-          placeholder="Image URL"
+          placeholder='Image URL'
           onChange={handleImageChange}
         />
 
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
     </div>
   );

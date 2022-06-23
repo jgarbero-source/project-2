@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function CatItem({
   isFavorite,
@@ -9,7 +9,7 @@ function CatItem({
   breed,
   id,
   handleCatUpdate,
-  deleteCat
+  deleteCat,
 }) {
   function handleFavorite() {
     isFavorite = !isFavorite;
@@ -27,13 +27,13 @@ function CatItem({
       .then((favCat) => handleCatUpdate(favCat));
   }
 
-function handleDelete() {
-  fetch(`http://localhost:3000/cats/${id}`, {
-    method: 'DELETE'
-  })
+  function handleDelete() {
+    fetch(`http://localhost:3000/cats/${id}`, {
+      method: 'DELETE',
+    });
 
-  deleteCat(id)
-}
+    deleteCat(id);
+  }
 
   return (
     <div>
