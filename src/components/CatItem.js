@@ -21,7 +21,7 @@ function CatItem({
   function handleFavorite() {
     isFavorite = !isFavorite;
 
-    fetch(`${process.env.REACT_APP_API_URL}/cats${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/cats/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function CatItem({
   }
 
   function handleDelete() {
-    fetch(`${process.env.REACT_APP_API_URL}/cats${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/cats/${id}`, {
       method: 'DELETE',
     });
     deleteCat(id);
