@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import OptionPicker from "./OptionPicker";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
 function Form({ catData, addCat }) {
   const [catImage, setCatImage] = useState("");
@@ -58,26 +60,28 @@ function Form({ catData, addCat }) {
         Add a kitty!
       </Typography>
 
-      <form onSubmit={handleSubmit}>
-        <OptionPicker
-          catData={catData}
-          filterChoice={filterChoice}
-          onSelection={handleSelection}
-        />
+      <Paper elevation={3}>
+        <form onSubmit={handleSubmit}>
+          <OptionPicker
+            catData={catData}
+            filterChoice={filterChoice}
+            onSelection={handleSelection}
+          />
 
-        <TextField
-          type="text"
-          name="image"
-          value={catImage}
-          placeholder="Image URL"
-          label="Image URL"
-          fullWidth
-          variant="standard"
-          onChange={handleImageChange}
-        />
+          <TextField
+            type="text"
+            name="image"
+            value={catImage}
+            placeholder="Image URL"
+            label="Image URL"
+            fullWidth
+            variant="standard"
+            onChange={handleImageChange}
+          />
 
-        <Button type="submit">Submit</Button>
-      </form>
+          <Button type="submit">Submit</Button>
+        </form>
+      </Paper>
     </Container>
   );
 }
