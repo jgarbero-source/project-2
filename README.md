@@ -23,6 +23,7 @@ After setting up the backend server (see instructions [here](https://github.com/
 - React.js
 - React Router
 - HTML/CSS
+- Material UI
 
 # Data Flow
 ```
