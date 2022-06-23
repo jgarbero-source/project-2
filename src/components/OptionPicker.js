@@ -1,4 +1,8 @@
 import React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 function OptionPicker({ catData, filterChoice, onSelection }) {
   const filterNames = Object.keys(filterChoice);
@@ -15,32 +19,35 @@ function OptionPicker({ catData, filterChoice, onSelection }) {
 
   const buildSelector = (choiceType) => {
     return (
-      <div key={choiceType}>
-        <label key={choiceType + "label"}>{choiceType}</label>
-        <select
+      <FormControl fullWidth>
+        <InputLabel key={choiceType + "label"} id={choiceType + "label"}>
+          {choiceType}
+        </InputLabel>
+        <Select
+          labelId={choiceType + "label"}
+          id={choiceType + "select"}
+          label={choiceType}
           name={choiceType}
           key={choiceType}
           onChange={onSelection}
           value={filterChoice[choiceType]}
         >
-          <option key={`all${choiceType}`}>All</option>
+          <MenuItem value="all" key={`all${choiceType}`}>
+            All
+          </MenuItem>
           {filterOptions[choiceType].map((choice) => (
-            <option
+            <MenuItem
               key={`${choice}_${choiceType}`}
               value={choice.toLowerCase()}
             >
               {choice}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </div>
+        </Select>
+      </FormControl>
     );
   };
 
-  return (
-    <div className="filter" key="options">
-      {filterNames.map((option) => buildSelector(option))}
-    </div>
-  );
+  return <div>{filterNames.map((option) => buildSelector(option))}</div>;
 }
 export default OptionPicker;

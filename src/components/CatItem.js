@@ -4,6 +4,10 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 
 function CatItem({
   isFavorite,
@@ -42,21 +46,23 @@ function CatItem({
   //
   return (
     <Grid item xs={4}>
-      <Box sx={{ width: 270, p: 2, border: "1px solid lightgrey" }}>
-        <Typography variant="subtitle1" gutterBottom component="div">
-          {breed}
-        </Typography>
-        <Typography variant="subtitle2" gutterBottom component="div">
-          {age} | {size} | {gender}
-        </Typography>
-        <img src={image} alt={breed} width="250" height="250" />
-        <ButtonGroup variant="text" aria-label="text button group">
+      <Card sx={{ maxWidth: 345 }}>
+        <CardMedia component="img" src={image} alt={breed} height="250" />
+        <CardContent>
+          <Typography variant="subtitle1" gutterBottom component="div">
+            {breed}
+          </Typography>
+          <Typography variant="subtitle2" gutterBottom component="div">
+            {age} | {size} | {gender}
+          </Typography>
+        </CardContent>
+        <CardActions>
           <Button onClick={handleFavorite}>
             {isFavorite ? "Unfavorite" : "Favorite"}
           </Button>
           <Button onClick={handleDelete}>Delete</Button>
-        </ButtonGroup>
-      </Box>
+        </CardActions>
+      </Card>
     </Grid>
   );
 }

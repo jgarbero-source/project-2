@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import OptionPicker from "./OptionPicker";
 
@@ -16,7 +18,7 @@ function Form({ catData, addCat }) {
   function handleImageChange(e) {
     setCatImage(e.target.value);
   }
-  const handleSelection = (e) => {
+  const handleSelection = (e: SelectChangeEvent) => {
     const { name, value } = e.target;
     setFilterChoice({ ...filterChoice, [name]: value });
   };
@@ -61,11 +63,13 @@ function Form({ catData, addCat }) {
           onSelection={handleSelection}
         />
 
-        <input
+        <TextField
           type="text"
           name="image"
           value={catImage}
           placeholder="Image URL"
+          label="Image"
+          fullWidth
           onChange={handleImageChange}
         />
 

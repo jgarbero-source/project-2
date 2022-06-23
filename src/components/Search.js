@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import CatContainer from "./CatContainer";
 import OptionPicker from "./OptionPicker";
 
@@ -10,7 +11,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
     Breed: "All",
   });
 
-  const handleSelection = (e) => {
+  const handleSelection = (e: SelectChangeEvent) => {
     const { name, value } = e.target;
 
     setFilterChoice({ ...filterChoice, [name]: value });

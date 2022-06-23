@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
 function CatContainer({ catData, handleCatUpdate, deleteCat }) {
-  //create some if conditional that selects one div over the other? I don't think that's how this works.
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
