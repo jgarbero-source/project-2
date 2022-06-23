@@ -3,27 +3,18 @@
     'Lucida Sans', Arial, sans-serif;
 }
 
+a {
+  color: aliceblue;
+  text-decoration: none;
+}
+a:hover {
+  color: #883997;
+}
+
 body {
-  background-color: #ffd9c0;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: aliceblue;
+  margin: auto;
 }
-
-button {
-  display: grid;
-  justify-content: center;
-  border-radius: 8px;
-  background-color: #faf0d7;
-}
-
-/* form {
-  display: flex;
-  justify-content: center;
-  /* justify-content: space-evenly; */
-  /* max-height: 20px;
-  padding-right: 5px;
-  padding-top: 10px;
-} */ 
 
 h3 {
   margin: 0px;
@@ -45,7 +36,9 @@ nav {
   padding-bottom: 0px;
   position: sticky;
   top: 0px;
-  background-color: #faf0d7;
+  background-color: #6668d0;
+  color: #ffffff;
+  z-index: 1000;
 }
 
 option {
@@ -56,7 +49,6 @@ option {
   display: grid;
   padding-top: 0px;
   justify-content: center;
-  background-color: #faf0d7;
   padding-bottom: 10px;
 }
 
@@ -73,12 +65,16 @@ option {
   display: flex;
   justify-content: center;
   min-height: 2vh;
-
-  background-color: #faf0d7;
-  position: sticky;
   top: 57px;
   padding-right: 5px;
   padding-bottom: 5px;
+}
+
+.header {
+  background-color: #2f3e9e;
+  color: #ffffff;
+  padding-top: 0px;
+  margin-top: 0px;
 }
 
 .kitty {

@@ -1,21 +1,23 @@
-import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import OptionPicker from "./OptionPicker";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
+import React, { useState } from 'react';
+import Typography from '@mui/material/Typography';
+import { SelectChangeEvent } from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import OptionPicker from './OptionPicker';
+import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 function Form({ catData, addCat }) {
   const [catImage, setCatImage] = useState('');
 
   const [filterChoice, setFilterChoice] = useState({
-    age: "",
-    size: "",
-    gender: "",
-    breed: "",
+    age: '',
+    size: '',
+    gender: '',
+    breed: '',
   });
 
   function handleImageChange(e) {
@@ -55,8 +57,8 @@ function Form({ catData, addCat }) {
   }
 
   return (
-    <Container maxWidth="lg">
-      <Typography variant="h4" gutterBottom component="div">
+    <Container maxWidth='lg' sx={{ paddingTop: '5px' }}>
+      <Typography variant='h4' gutterBottom component='div' paddi>
         Add a kitty!
       </Typography>
 
@@ -69,17 +71,47 @@ function Form({ catData, addCat }) {
           />
 
           <TextField
-            type="text"
-            name="image"
+            type='text'
+            name='image'
             value={catImage}
-            placeholder="Image URL"
-            label="Image URL"
-            fullWidth
-            variant="standard"
+            placeholder='Image URL'
+            label='Image URL'
+            variant='standard'
             onChange={handleImageChange}
+            sx={{
+              paddingBottom: '5px',
+              marginLeft: '10px',
+              paddingRight: '10px',
+              width: '85%',
+            }}
           />
-
-          <Button type="submit">Submit</Button>
+          <Card>
+            {catImage ? (
+              <CardMedia
+                component='img'
+                src={catImage}
+                alt={filterChoice.breed}
+                height='500px'
+              />
+            ) : null}
+            {filterChoice.age ? (
+              <CardContent>
+                <Typography variant='subtitle1' gutterBottom component='div'>
+                  {filterChoice.breed}
+                </Typography>
+                <Typography variant='subtitle2' gutterBottom component='div'>
+                  {filterChoice.age}
+                </Typography>
+                <Typography variant='subtitle2' gutterBottom component='div'>
+                  {filterChoice.size}
+                </Typography>
+                <Typography variant='subtitle2' gutterBottom component='div'>
+                  {filterChoice.gender}
+                </Typography>
+              </CardContent>
+            ) : null}
+          </Card>
+          <Button type='submit'>Submit</Button>
         </form>
       </Paper>
     </Container>
