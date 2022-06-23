@@ -12,10 +12,10 @@ function Form({ catData, addCat }) {
   const [catImage, setCatImage] = useState("");
 
   const [filterChoice, setFilterChoice] = useState({
-    Age: "All",
-    Size: "All",
-    Gender: "All",
-    Breed: "All",
+    age: "",
+    size: "",
+    gender: "",
+    breed: "",
   });
 
   function handleImageChange(e) {
@@ -30,16 +30,16 @@ function Form({ catData, addCat }) {
     e.preventDefault();
     const newCat = {
       isFavorite: false,
-      age: filterChoice.Age.charAt(0).toUpperCase() + filterChoice.Age.slice(1),
+      age: filterChoice.age.charAt(0).toUpperCase() + filterChoice.age.slice(1),
       gender:
-        filterChoice.Gender.charAt(0).toUpperCase() +
-        filterChoice.Gender.slice(1),
+        filterChoice.gender.charAt(0).toUpperCase() +
+        filterChoice.gender.slice(1),
       size:
-        filterChoice.Size.charAt(0).toUpperCase() + filterChoice.Size.slice(1),
+        filterChoice.size.charAt(0).toUpperCase() + filterChoice.size.slice(1),
       image: catImage,
       breed:
-        filterChoice.Breed.charAt(0).toUpperCase() +
-        filterChoice.Breed.slice(1),
+        filterChoice.breed.charAt(0).toUpperCase() +
+        filterChoice.breed.slice(1),
     };
     addCat(newCat);
 

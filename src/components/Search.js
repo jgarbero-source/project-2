@@ -6,10 +6,10 @@ import OptionPicker from "./OptionPicker";
 
 function Search({ catData, handleCatUpdate, deleteCat }) {
   const [filterChoice, setFilterChoice] = useState({
-    Age: "All",
-    Size: "All",
-    Gender: "All",
-    Breed: "All",
+    age: "",
+    size: "",
+    gender: "",
+    breed: "",
   });
 
   const handleSelection = (e: SelectChangeEvent) => {
@@ -21,7 +21,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   const filterCats = () => {
     // Filtering an object for just key:value pairs where value !== 'All'
     const asArray = Object.entries(filterChoice);
-    const filtered = asArray.filter(([key, value]) => value !== "All");
+    const filtered = asArray.filter(([key, value]) => value !== "");
     const activeFilters = Object.fromEntries(filtered);
 
     let filteredCats = [];

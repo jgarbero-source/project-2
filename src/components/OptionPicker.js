@@ -33,14 +33,11 @@ function OptionPicker({ catData, filterChoice, onSelection }) {
           onChange={onSelection}
           value={filterChoice[choiceType]}
         >
-          <MenuItem value="all" key={`all${choiceType}`}>
-            All
+          <MenuItem key={`All_${choiceType}`} value="">
+            <em>none</em>
           </MenuItem>
           {filterOptions[choiceType].map((choice) => (
-            <MenuItem
-              key={`${choice}_${choiceType}`}
-              value={choice.toLowerCase()}
-            >
+            <MenuItem key={`${choice}_${choiceType}`} value={choice}>
               {choice}
             </MenuItem>
           ))}
