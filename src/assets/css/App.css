@@ -16,14 +16,14 @@ button {
   background-color: #faf0d7;
 }
 
-form {
+/* form {
   display: flex;
   justify-content: center;
   /* justify-content: space-evenly; */
-  max-height: 20px;
+  /* max-height: 20px;
   padding-right: 5px;
   padding-top: 10px;
-}
+} */ 
 
 h3 {
   margin: 0px;

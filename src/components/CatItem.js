@@ -22,8 +22,6 @@ function CatItem({
 }) {
   function handleFavorite() {
     isFavorite = !isFavorite;
-    console.log(isFavorite);
-    console.log(id);
 
     fetch(`http://localhost:3000/cats/${id}`, {
       method: "PATCH",

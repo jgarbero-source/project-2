@@ -13,7 +13,7 @@ function Header() {
           title="MEOW"
           className="kitty"
         />
-        Welcome to the Kitty Collective!
+        The Kitty Collective
       </Typography>
     </div>
   );
