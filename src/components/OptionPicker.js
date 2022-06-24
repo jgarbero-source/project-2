@@ -1,8 +1,8 @@
-import React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 function OptionPicker({ catData, filterChoice, onSelection }) {
   const filterNames = Object.keys(filterChoice);
@@ -19,20 +19,24 @@ function OptionPicker({ catData, filterChoice, onSelection }) {
 
   const buildSelector = (choiceType) => {
     return (
-      <FormControl variant='standard' sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel key={choiceType + 'label'} id={choiceType + 'label'}>
+      <FormControl
+        key={choiceType + "form"}
+        variant="standard"
+        sx={{ m: 1, minWidth: 120 }}
+      >
+        <InputLabel key={choiceType + "label"} id={choiceType + "label"}>
           {choiceType}
         </InputLabel>
         <Select
-          labelId={choiceType + 'label'}
-          id={choiceType + 'select'}
+          labelId={choiceType + "label"}
+          id={choiceType + "select"}
           label={choiceType}
           name={choiceType}
           key={choiceType}
           onChange={onSelection}
           value={filterChoice[choiceType]}
         >
-          <MenuItem key={`All_${choiceType}`} value=''>
+          <MenuItem key={`All_${choiceType}`} value="">
             <em>none</em>
           </MenuItem>
           {filterOptions[choiceType].map((choice) => (
