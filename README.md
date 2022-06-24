@@ -30,12 +30,12 @@ After setting up the backend server (see instructions [here](https://github.com/
                                 index
                                   |
                                  App
-                __________________|____________________
-               |         |        |          |         |
-              Header   NavBar   Search   Favorites   Home
-                            ______|______    |
-                           |             |   |
-                      OptionPicker  CatContainer
+                __________________|_____________________________
+               |         |        |          |         |        |
+              Header   NavBar   Search   Favorites   Home      Form
+                            ______|______    |                  |
+                           |             |   |                  |
+                      OptionPicker  CatContainer             OptionPicker
                                          |
                                       CatItem
 ```
