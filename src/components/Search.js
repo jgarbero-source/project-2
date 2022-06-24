@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { SelectChangeEvent } from "@mui/material/Select";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import CatContainer from "./CatContainer";
-import OptionPicker from "./OptionPicker";
-import Card from "@mui/material/Card";
+import React, { useState } from 'react';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import CatContainer from './CatContainer';
+import OptionPicker from './OptionPicker';
+import Card from '@mui/material/Card';
 
 function Search({ catData, handleCatUpdate, deleteCat }) {
   const [filterChoice, setFilterChoice] = useState({
-    age: "",
-    size: "",
-    gender: "",
-    breed: "",
+    age: '',
+    size: '',
+    gender: '',
+    breed: '',
   });
 
   const handleSelection = (e: SelectChangeEvent) => {
@@ -22,7 +22,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   const filterCats = () => {
     // Reducing copy of filter object to just key:value pairs where filter value has been set
     const asArray = Object.entries(filterChoice);
-    const filtered = asArray.filter(([key, value]) => value !== "");
+    const filtered = asArray.filter(([key, value]) => value !== '');
     const activeFilters = Object.fromEntries(filtered);
 
     let filteredCats = [];
@@ -39,20 +39,20 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ paddingTop: "5px" }}>
-      <Typography variant="h4" gutterBottom component="div">
+    <Container maxWidth='lg' sx={{ paddingTop: '5px' }}>
+      <Typography variant='h4' gutterBottom component='div'>
         Search
       </Typography>
       {/* <Stack spacing={2}> */}
       <Card
         sx={{
-          position: "sticky",
+          position: 'sticky',
           opacity: 1,
-          top: "63px",
-          marginBottom: "10px",
-          maxWidth: "595px",
-          paddingTop: "5px",
-          backgroundColor: "#ffffff",
+          top: '63px',
+          marginBottom: '10px',
+          maxWidth: '595px',
+          paddingTop: '5px',
+          backgroundColor: '#ffffff',
           zIndex: 1001,
         }}
       >
@@ -68,6 +68,7 @@ function Search({ catData, handleCatUpdate, deleteCat }) {
         deleteCat={deleteCat}
       />
       {/* </Stack> */}
+      <footer id='bottom' display='none'></footer>
     </Container>
   );
 }
